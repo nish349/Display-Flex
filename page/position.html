@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Absolute Positioning</title>
+      <link rel="stylesheet" href="../assets/css/position.css" />
+   </head>
+
+   <div class="container">
+      <header>
+         <a href="index.html" style="font-weight: bold">&larr; Back to Home</a>
+         <h1>Mastering CSS Positioning</h1>
+      </header>
+
+      <!-- --- Introduction --- -->
+      <section id="intro">
+         <h2>What is Positioning?</h2>
+         <p>
+            The <code>position</code> property in CSS specifies how an element is positioned in the document. Along with
+            the "offset" properties (<code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>),
+            it allows you to take elements out of the normal document flow and place them exactly where you want.
+         </p>
+         <p>
+            This was a common way to create layouts before Flexbox and Grid, but today it's mainly used for UI elements
+            like modals, tooltips, and navigation bars.
+         </p>
+      </section>
+
+      <!-- --- Interactive Playground --- -->
+      <section id="playground">
+         <h2>Interactive Playground</h2>
+         <div class="playground">
+            <!-- --- Controls Panel --- -->
+            <div class="controls">
+               <div class="control-group">
+                  <h3>Parent Container</h3>
+                  <div class="toggle-switch">
+                     <label for="parent-position">Set <code>position: relative</code></label>
+                     <label class="switch">
+                        <input type="checkbox" id="parent-position" class="control" />
+                        <span class="slider"></span>
+                     </label>
+                  </div>
+                  <small>Watch what happens to the <strong>absolute</strong> child when you toggle this!</small>
+               </div>
+
+               <hr style="margin: 30px 0; border: 1px solid var(--border-main)" />
+
+               <div class="control-group">
+                  <h3>Child Item</h3>
+                  <label for="position">position</label>
+                  <select id="position" class="control">
+                     <option value="static">static (default)</option>
+                     <option value="relative">relative</option>
+                     <option value="absolute">absolute</option>
+                     <option value="fixed">fixed</option>
+                     <option value="sticky">sticky</option>
+                  </select>
+               </div>
+
+               <p>Use 'auto' to disable a property.</p>
+
+               <div class="control-group">
+                  <label for="top">top</label>
+                  <input type="text" id="top" class="control" value="auto" placeholder="e.g., 20px or 10%" />
+               </div>
+               <div class="control-group">
+                  <label for="left">left</label>
+                  <input type="text" id="left" class="control" value="auto" placeholder="e.g., 20px or 10%" />
+               </div>
+               <div class="control-group">
+                  <label for="bottom">bottom</label>
+                  <input type="text" id="bottom" class="control" value="auto" placeholder="e.g., 20px or 10%" />
+               </div>
+               <div class="control-group">
+                  <label for="right">right</label>
+                  <input type="text" id="right" class="control" value="auto" placeholder="e.g., 20px or 10%" />
+               </div>
+
+               <button id="resetBtn" class="secondary" style="width: 100%">Reset</button>
+            </div>
+
+            <!-- --- Visualizer & Code Output --- -->
+            <div class="visualizer-wrapper">
+               <!-- This is the Parent Container -->
+               <div class="visualizer-container" id="parentContainer">
+                  <p style="font-weight: bold; color: var(--text-heading)">Parent Container</p>
+
+                  <!-- The Child Item -->
+                  <div class="positioned-item" id="childItem">Child Item</div>
+                  <!-- Placeholder for static/relative -->
+                  <div class="static-placeholder">Original Position</div>
+               </div>
+
+               <!-- Code Output -->
+               <h3 style="margin-top: 20px">Live CSS Output</h3>
+               <pre id="codeSnippetParent">
+<span class="comment">/* Parent Styles */</span>
+<span class="property">.parent</span> {
+  <span class="property">position</span>: <span class="value">static</span>;
+}
+</pre>
+               <pre id="codeSnippetChild">
+<span class="comment">/* Child Styles */</span>
+<span class="property">.child</span> {
+  <span class="property">position</span>: <span class="value">static</span>;
+  <span class="property">top</span>: <span class="value">auto</span>;
+  <span class="property">left</span>: <span class="value">auto</span>;
+  <span class="property">bottom</span>: <span class="value">auto</span>;
+  <span class="property">right</span>: <span class="value">auto</span>;
+}
+</pre>
+            </div>
+         </div>
+      </section>
+
+      <!-- --- Explanations --- -->
+      <section id="explanations">
+         <h2>The <code>position</code> Values Explained</h2>
+         <div class="explanation-grid">
+            <div class="explanation-card">
+               <h3>static (Default)</h3>
+               <p>
+                  The element is positioned according to the <strong>normal flow</strong> of the document. The
+                  <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code> properties have no
+                  effect.
+               </p>
+            </div>
+            <div class="explanation-card">
+               <h3>relative</h3>
+               <p>
+                  The element is positioned according to the normal flow, but then offset relative to
+                  <strong>itself</strong> based on <code>top</code>, etc. The space it would have taken is still
+                  preserved.
+               </p>
+               <p>
+                  <strong>Crucially,</strong> this also makes the element a "containing block" for any
+                  <code>absolute</code> children.
+               </p>
+            </div>
+            <div class="explanation-card">
+               <h3>absolute</h3>
+               <p>
+                  The element is <strong>removed from the normal flow</strong>. It is positioned relative to its nearest
+                  "positioned" ancestor (i.e., an ancestor with <code>position</code> set to <code>relative</code>,
+                  <code>absolute</code>, <code>fixed</code>, or <code>sticky</code>). If no such ancestor exists, it's
+                  positioned relative to the initial containing block (usually the <code>&lt;html&gt;</code> element).
+               </p>
+            </div>
+            <div class="explanation-card">
+               <h3>fixed</h3>
+               <p>
+                  The element is <strong>removed from the normal flow</strong>. It is positioned relative to the
+                  <strong>viewport</strong> (the browser window). It will stay in the same place even when the page is
+                  scrolled.
+               </p>
+            </div>
+            <div class="explanation-card">
+               <h3>sticky</h3>
+               <p>
+                  A hybrid of <code>relative</code> and <code>fixed</code>. The element acts like
+                  <code>relative</code> until it hits a specified offset (e.g., <code>top: 0</code>) during scrolling,
+                  at which point it "sticks" in place like <code>fixed</code>. (Note: May behave oddly in this container
+                  due to <code>overflow: hidden</code>).
+               </p>
+            </div>
+         </div>
+      </section>
+   </div>
+   <!-- /container -->
+   <script src="../assets/js/position.js"></script>
+</html>

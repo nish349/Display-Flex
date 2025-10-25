@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Master Flexbox — Learn by Doing</title>
+      <link rel="stylesheet" href="../assets/css/flex.css" />
+   </head>
+   <body>
+      <div class="container">
+         <header>
+            <h1>🎯 Master Flexbox — Learn by Doing</h1>
+         </header>
+
+         <section id="intro">
+            <h2>What is Flexbox?</h2>
+            <p>
+               The <strong>CSS Flexible Box Layout Module</strong> (Flexbox) is a one-dimensional layout model that
+               offers an efficient way to lay out, align, and distribute space among items in a container, even when
+               their size is unknown or dynamic.
+            </p>
+            <h3>Why Use Flexbox?</h3>
+            <p>
+               Flexbox makes it simple to solve common layout problems that were historically difficult with CSS. It's
+               perfect for:
+            </p>
+            <ul>
+               <li>Building responsive navigation bars.</li>
+               <li>Vertically centering content (finally!).</li>
+               <li>Creating "holy grail" layouts (header, footer, sidebar, main).</li>
+               <li>Distributing items with equal spacing.</li>
+               <li>Making items grow or shrink to fill available space.</li>
+            </ul>
+         </section>
+
+         <section id="playground">
+            <h2>Interactive Playground</h2>
+            <div class="playground">
+               <div class="controls">
+                  <div class="control-group">
+                     <h3>Container (Parent) Properties</h3>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="flex-direction">
+                        flex-direction
+                        <span class="tooltip" data-tooltip="Defines the direction of the main axis. (Default: row)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="flex-direction" class="control">
+                        <option value="row">row</option>
+                        <option value="row-reverse">row-reverse</option>
+                        <option value="column">column</option>
+                        <option value="column-reverse">column-reverse</option>
+                     </select>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="justify-content">
+                        justify-content
+                        <span class="tooltip" data-tooltip="Aligns items along the main axis. (Default: flex-start)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="justify-content" class="control">
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-around">space-around</option>
+                        <option value="space-evenly">space-evenly</option>
+                     </select>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="align-items">
+                        align-items
+                        <span class="tooltip" data-tooltip="Aligns items along the cross axis. (Default: stretch)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="align-items" class="control">
+                        <option value="stretch">stretch</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="baseline">baseline</option>
+                     </select>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="flex-wrap">
+                        flex-wrap
+                        <span
+                           class="tooltip"
+                           data-tooltip="Controls whether items wrap to a new line. (Default: nowrap)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="flex-wrap" class="control">
+                        <option value="nowrap">nowrap</option>
+                        <option value="wrap">wrap</option>
+                        <option value="wrap-reverse">wrap-reverse</option>
+                     </select>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="align-content">
+                        align-content
+                        <span
+                           class="tooltip"
+                           data-tooltip="Aligns lines of items (only applies with flex-wrap: wrap). (Default: stretch)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="align-content" class="control">
+                        <option value="stretch">stretch</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-around">space-around</option>
+                     </select>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="gap">
+                        gap (in px)
+                        <span class="tooltip" data-tooltip="Sets the spacing between items. (Default: 0)">?</span>
+                     </label>
+                     <input type="range" id="gap" class="control" min="0" max="50" value="10" />
+                  </div>
+
+                  <hr style="margin: 30px 0; border: 1px solid var(--border-color)" />
+
+                  <div class="control-group">
+                     <div class="item-controls-header">
+                        <h3>Item (Child) Properties</h3>
+                        <span id="selected-item-label">No item selected</span>
+                     </div>
+                     <p style="font-size: 0.9rem; margin-bottom: 20px">
+                        Click an item in the visualizer to select it and edit its properties.
+                     </p>
+                  </div>
+
+                  <div class="control-group">
+                     <label for="order">
+                        order
+                        <span class="tooltip" data-tooltip="Controls the visual order of items. (Default: 0)">?</span>
+                     </label>
+                     <input type="number" id="order" class="item-control" value="0" disabled />
+                  </div>
+
+                  <div class="control-group">
+                     <label for="flex-grow">
+                        flex-grow
+                        <span class="tooltip" data-tooltip="How much an item can grow relative to others. (Default: 0)"
+                           >?</span
+                        >
+                     </label>
+                     <input type="number" id="flex-grow" class="item-control" min="0" value="0" disabled />
+                  </div>
+
+                  <div class="control-group">
+                     <label for="flex-shrink">
+                        flex-shrink
+                        <span
+                           class="tooltip"
+                           data-tooltip="How much an item can shrink relative to others. (Default: 1)"
+                           >?</span
+                        >
+                     </label>
+                     <input type="number" id="flex-shrink" class="item-control" min="0" value="1" disabled />
+                  </div>
+
+                  <div class="control-group">
+                     <label for="flex-basis">
+                        flex-basis
+                        <span
+                           class="tooltip"
+                           data-tooltip="The default size of an item before growing/shrinking (e.g., 'auto', '100px', '20%'). (Default: auto)"
+                           >?</span
+                        >
+                     </label>
+                     <input type="text" id="flex-basis" class="item-control" value="auto" disabled />
+                  </div>
+
+                  <div class="control-group">
+                     <label for="align-self">
+                        align-self
+                        <span
+                           class="tooltip"
+                           data-tooltip="Overrides the container's 'align-items' for a single item. (Default: auto)"
+                           >?</span
+                        >
+                     </label>
+                     <select id="align-self" class="item-control" disabled>
+                        <option value="auto">auto</option>
+                        <option value="stretch">stretch</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="baseline">baseline</option>
+                     </select>
+                  </div>
+               </div>
+
+               <div class="visualizer-wrapper">
+                  <div class="item-manager-buttons">
+                     <button id="addItemBtn">Add Item</button>
+                     <button id="removeItemBtn" class="danger">Remove Item</button>
+                     <button id="resetBtn" class="secondary">Reset All</button>
+                  </div>
+
+                  <div class="visualizer-container" id="flexContainer">
+                     <div class="flex-item" data-item="1">1</div>
+                     <div class="flex-item" data-item="2">2</div>
+                     <div class="flex-item" data-item="3">3</div>
+                  </div>
+
+                  <h3 style="margin-top: 20px">Live CSS Output</h3>
+                  <pre id="codeSnippetContainer">
+                     <span class="comment">/* Container Styles */</span>
+                     <span class="property">.container</span> 
+                     {
+                        <span class="property">display</span>: <span class="value">flex</span>;
+                        <span class="property">flex-direction</span>: <span class="value">row</span>;
+                        <span class="property">justify-content</span>: <span class="value">flex-start</span>;
+                        <span class="property">align-items</span>: <span class="value">stretch</span>;
+                        <span class="property">flex-wrap</span>: <span class="value">nowrap</span>;
+                        <span class="property">align-content</span>: <span class="value">stretch</span>;
+                        <span class="property">gap</span>: <span class="value">10px</span>;
+                     }
+                  </pre>
+
+                  <pre id="codeSnippetItem" style="display: none">
+                     <span class="comment">/* Selected Item Styles */</span>
+                        <span class="property">.selected-item</span> 
+                        {
+                           <span class="property">order</span>: <span class="value">0</span>;
+                           <span class="property">flex-grow</span>: <span class="value">0</span>;
+                           <span class="property">flex-shrink</span>: <span class="value">1</span>;
+                           <span class="property">flex-basis</span>: <span class="value">auto</span>;
+                           <span class="property">align-self</span>: <span class="value">auto</span>;
+                        }
+                  </pre>
+               </div>
+            </div>
+         </section>
+
+         <section id="challenges">
+            <h2>Challenges (Try These!)</h2>
+            <p>Use the playground controls to achieve the following layouts. Click "Show Solution" to see the CSS.</p>
+            <div class="challenges-grid">
+               <div class="challenge-card">
+                  <h4>Challenge 1: Centered Column</h4>
+                  <p>
+                     Make all items stack vertically in a column, centered on the page (both horizontally and
+                     vertically).
+                  </p>
+                  <button class="toggle-solution secondary">Show Solution</button>
+                  <div class="solution">
+                     <pre>
+   .container {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   }
+</pre
+                     >
+                  </div>
+               </div>
+
+               <div class="challenge-card">
+                  <h4>Challenge 2: Holy Grail Footer</h4>
+                  <p>Arrange 3 items so they are in a row, with the middle item taking up all the extra space.</p>
+                  <button class="toggle-solution secondary">Show Solution</button>
+                  <div class="solution">
+                     <pre>
+/* Set container to: */
+flex-direction: row;
+
+/* Select Item 2 and set: */
+.item-2 {
+flex-grow: 1;
+}
+</pre
+                     >
+                  </div>
+               </div>
+
+               <div class="challenge-card">
+                  <h4>Challenge 3: Re-order</h4>
+                  <p>Make the items appear in the order 3, 1, 2.</p>
+                  <button class="toggle-solution secondary">Show Solution</button>
+                  <div class="solution">
+                     <pre>
+   /* Select Item 1: */
+   .item-1 { order: 2; }
+
+   /* Select Item 2: */
+   .item-2 { order: 3; }
+
+   /* Select Item 3: */
+   .item-3 { order: 1; }
+</pre
+                     >
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <script src="../assets/js/flex.js"></script>
+   </body>
+</html>

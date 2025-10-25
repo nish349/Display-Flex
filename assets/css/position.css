@@ -1,0 +1,367 @@
+/* --- 1. Global Styles & Theming (From main project) --- */
+:root {
+   /* Color Palette */
+   --color-primary: #3498db;
+   --color-secondary: #2c3e50;
+   --color-danger: #e74c3c;
+   --color-success: #1abc9c;
+   --color-warning: #f1c40f;
+   --color-info: #9b59b6;
+   --color-special: #e67e22;
+
+   /* Light Theme */
+   --bg-page: #ffffff;
+   --bg-controls: #f8f9fa;
+   --bg-visualizer: #ecf0f1;
+   --bg-code: #f1f1f1;
+   --bg-code-inline: rgba(0, 0, 0, 0.05);
+   --bg-tooltip: var(--color-secondary);
+   --bg-input: #ffffff;
+
+   --text-body: #333333;
+   --text-heading: var(--color-secondary);
+   --text-code: #333333;
+   --text-tooltip: #ffffff;
+   --text-input: #000000;
+   --text-label-selected: var(--color-danger);
+
+   --border-main: #dee2e6;
+   --border-visualizer: var(--color-primary);
+   --border-input: #cccccc;
+
+   --shadow-main: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+   --code-comment: #6a737d;
+   --code-property: #005cc5;
+   --code-value: #d73a49;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      /* Dark Theme */
+      --bg-page: #1a202c;
+      --bg-controls: #2d3748;
+      --bg-visualizer: #2a2a33;
+      --bg-code: #1e1e1e;
+      --bg-code-inline: rgba(255, 255, 255, 0.1);
+      --bg-tooltip: #4a5568;
+      --bg-input: #2d3748;
+
+      --text-body: #e2e8f0;
+      --text-heading: #f7fafc;
+      --text-code: #d4d4d4;
+      --text-tooltip: #f7fafc;
+      --text-input: #e2e8f0;
+      --text-label-selected: #ff7575;
+
+      --border-main: #4a5568;
+      --border-input: #4a5568;
+
+      --shadow-main: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+      --code-comment: #888888;
+      --code-property: #9cdcfe;
+      --code-value: #ce9178;
+   }
+}
+
+/* --- 2. Base Styles --- */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+   line-height: 1.7;
+   background-color: var(--bg-page);
+   color: var(--text-body);
+   transition: background-color 0.2s ease, color 0.2s ease;
+   padding-bottom: 50px;
+}
+
+.container {
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 20px;
+}
+
+h1,
+h2,
+h3 {
+   color: var(--text-heading);
+   margin-bottom: 15px;
+   line-height: 1.3;
+}
+
+h1 {
+   font-size: 2.5rem;
+   text-align: center;
+   margin: 30px 0;
+}
+
+h2 {
+   font-size: 2rem;
+   border-bottom: 2px solid var(--color-primary);
+   padding-bottom: 10px;
+   margin-top: 40px;
+}
+
+h3 {
+   font-size: 1.5rem;
+   margin-top: 25px;
+}
+
+p {
+   margin-bottom: 15px;
+}
+
+code {
+   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+   background-color: var(--bg-code-inline);
+   color: var(--text-code);
+   padding: 2px 5px;
+   border-radius: 4px;
+}
+
+pre {
+   background: var(--bg-code);
+   color: var(--text-code);
+   padding: 20px;
+   border-radius: 8px;
+   overflow-x: auto;
+   margin-bottom: 20px;
+   font-size: 0.9rem;
+}
+
+pre .comment {
+   color: var(--code-comment);
+}
+pre .property {
+   color: var(--code-property);
+}
+pre .value {
+   color: var(--code-value);
+}
+
+button {
+   cursor: pointer;
+   padding: 8px 15px;
+   border: none;
+   border-radius: 5px;
+   background-color: var(--color-primary);
+   color: white;
+   font-size: 0.9rem;
+   font-weight: bold;
+   transition: background-color 0.2s ease;
+}
+button:hover {
+   opacity: 0.85;
+}
+button.secondary {
+   background-color: var(--color-secondary);
+}
+
+a {
+   color: var(--color-primary);
+   text-decoration: none;
+}
+a:hover {
+   text-decoration: underline;
+}
+
+/* --- 3. Playground Layout --- */
+.playground {
+   display: grid;
+   grid-template-columns: 350px 1fr;
+   gap: 30px;
+   margin-top: 30px;
+}
+
+.controls {
+   background: var(--bg-controls);
+   border: 1px solid var(--border-main);
+   border-radius: 8px;
+   padding: 25px;
+   box-shadow: var(--shadow-main);
+   height: fit-content;
+}
+
+.control-group {
+   margin-bottom: 25px;
+}
+
+.control-group label {
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+   margin-bottom: 8px;
+   color: var(--text-heading);
+}
+
+.control-group select,
+.control-group input[type="text"] {
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid var(--border-input);
+   font-size: 0.95rem;
+   background-color: var(--bg-input);
+   color: var(--text-input);
+}
+
+/* Custom Toggle Switch for Parent Position */
+.toggle-switch {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.switch {
+   position: relative;
+   display: inline-block;
+   width: 60px;
+   height: 34px;
+}
+.switch input {
+   display: none;
+}
+.slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   transition: 0.4s;
+   border-radius: 34px;
+}
+.slider:before {
+   position: absolute;
+   content: "";
+   height: 26px;
+   width: 26px;
+   left: 4px;
+   bottom: 4px;
+   background-color: white;
+   transition: 0.4s;
+   border-radius: 50%;
+}
+input:checked + .slider {
+   background-color: var(--color-success);
+}
+input:checked + .slider:before {
+   transform: translateX(26px);
+}
+
+.visualizer-wrapper {
+   position: relative;
+}
+
+/* The Parent Container */
+.visualizer-container {
+   position: static; /* Default */
+   height: 500px;
+   width: 100%;
+   background: var(--bg-visualizer);
+   border: 3px dashed var(--border-visualizer);
+   border-radius: 8px;
+   padding: 20px;
+   transition: all 0.3s ease;
+   overflow: hidden; /* To contain sticky/absolute items */
+}
+
+.visualizer-container.relative {
+   position: relative;
+   border-style: solid;
+   border-color: var(--color-success);
+}
+
+/* The Child Item */
+.positioned-item {
+   position: static; /* Default */
+   width: 120px;
+   height: 120px;
+   background-color: var(--color-danger);
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-weight: bold;
+   font-size: 1.2rem;
+   border-radius: 5px;
+   padding: 10px;
+   text-align: center;
+   z-index: 10;
+   transition: all 0.3s ease;
+   /* Default "auto" values */
+   top: auto;
+   left: auto;
+   right: auto;
+   bottom: auto;
+}
+
+/* Placeholder for static/relative */
+.static-placeholder {
+   width: 120px;
+   height: 120px;
+   background: rgba(0, 0, 0, 0.1);
+   border: 2px dashed #888;
+   border-radius: 5px;
+   display: none; /* Hidden by default */
+   font-size: 0.8rem;
+   padding: 5px;
+   color: var(--text-body);
+}
+.positioned-item.static,
+.positioned-item.relative {
+   z-index: 1;
+}
+.positioned-item.static + .static-placeholder,
+.positioned-item.relative + .static-placeholder {
+   display: flex; /* Show placeholder */
+   justify-content: center;
+   align-items: center;
+}
+.positioned-item.fixed {
+   position: fixed;
+}
+.positioned-item.absolute {
+   position: absolute;
+}
+.positioned-item.sticky {
+   position: sticky;
+}
+
+/* --- 4. Explanations & Other --- */
+.explanation-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 20px;
+}
+
+.explanation-card {
+   background: var(--bg-controls);
+   border: 1px solid var(--border-main);
+   border-radius: 8px;
+   padding: 20px;
+   box-shadow: var(--shadow-main);
+}
+.explanation-card h3 {
+   color: var(--color-primary);
+   margin-top: 0;
+}
+
+/* --- 5. Responsiveness --- */
+@media (max-width: 992px) {
+   .playground {
+      grid-template-columns: 1fr;
+   }
+   .controls {
+      order: 1;
+   }
+   .visualizer-wrapper {
+      order: 2;
+   }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Mastering CSS Layouts: From Tables to Flexbox</title>
+      <link rel="stylesheet" href="assets/css/styles.css" />
+   </head>
+   <body>
+      <header class="hero-header">
+         <div class="container">
+            <h1>Mastering CSS Layouts</h1>
+            <p class="subtitle">
+               An interactive journey through the history of CSS alignment. From the early days of
+               <code>&lt;table&gt;</code>s to the power of modern Flexbox and Grid.
+            </p>
+         </div>
+      </header>
+
+      <div class="container">
+         <section id="intro">
+            <h2>Learn by Doing.</h2>
+            <p>
+               This site is an interactive guide dedicated to one of the most fundamental parts of web development:
+               aligning content. We explore every major layout method used throughout the history of CSS.
+            </p>
+            <p>
+               Learn the "why" behind each technique, see how they were used, and play with live examples to master
+               them.
+            </p>
+         </section>
+
+         <section id="methods">
+            <h2>Explore the Methods</h2>
+
+            <div class="layout-grid">
+               <!-- Card 1: Flexbox -->
+               <div class="layout-card">
+                  <h3>CSS Flexbox</h3>
+                  <span class="era-tag modern">Modern</span>
+                  <p>
+                     The powerful, modern standard for one-dimensional layout. Perfect for aligning components,
+                     navigation bars, and distributing space.
+                  </p>
+                  <!-- 
+                      IMPORTANT: Update this href to point to your actual flexbox page!
+                      Example: href="flexbox.html" or href="./flexbox/index.html"
+                    -->
+                  <a href="./page/flex.html"><button>Learn Flexbox</button></a>
+               </div>
+
+               <!-- Card 2: CSS Grid (I've added this as it's essential!) -->
+               <div class="layout-card">
+                  <h3>CSS Grid</h3>
+                  <span class="era-tag modern">Modern</span>
+                  <p>
+                     The ultimate two-dimensional layout system. Ideal for entire page layouts, complex dashboards, and
+                     responsive, gap-aware designs.
+                  </p>
+                  <a href="grid-page.html"><button>Learn Grid</button></a>
+               </div>
+
+               <!-- Card 3: Position -->
+               <div class="layout-card">
+                  <h3>Positioning</h3>
+                  <span class="era-tag modern">Contextual</span>
+                  <p>
+                     Take elements out of the normal flow. Ideal for overlays, popups, and precise UI details. (Covers
+                     <code>absolute</code>, <code>relative</code>, etc.)
+                  </p>
+                  <a href="./page/position.html"><button>Learn Positioning</button></a>
+               </div>
+
+               <!-- Card 4: Floats -->
+               <div class="layout-card">
+                  <h3>Floats</h3>
+                  <span class="era-tag legacy">Legacy</span>
+                  <p>
+                     The original method for creating columns and wrapping text around images. A cornerstone of
+                     "classic" CSS (and <code>clearfix</code>!).
+                  </p>
+                  <a href="float-page.html"><button>Learn Floats</button></a>
+               </div>
+
+               <!-- Card 5: Inline-Block -->
+               <div class="layout-card">
+                  <h3>Inline-Block</h3>
+                  <span class="era-tag legacy">Legacy</span>
+                  <p>
+                     A clever trick from the past to place block-level items in a row (with a few quirks!). A step up
+                     from floats for component layout.
+                  </p>
+                  <a href="inline-block-page.html"><button>Learn Inline-Block</button></a>
+               </div>
+
+               <!-- Card 6: HTML Tables -->
+               <div class="layout-card">
+                  <h3>HTML Tables</h3>
+                  <span class="era-tag ancient">Ancient</span>
+                  <p>
+                     The very first method for layout. See how <code>&lt;table&gt;</code>s were used for entire websites
+                     (and why we don't do that anymore).
+                  </p>
+                  <a href="table-page.html"><button>Learn Table Layouts</button></a>
+               </div>
+            </div>
+         </section>
+
+         <footer>
+            <p>A project to explore the history of CSS. Built with HTML, CSS, and JavaScript.</p>
+         </footer>
+      </div>
+      <!-- /container -->
+   </body>
+</html>
