@@ -1,8 +1,5 @@
-### Cover Image
-
-Here is the cover image for this project:
-
-![Website Cover](/cover.jpg)
+<!-- ![Website Cover](/cover.jpg) -->
+<img src="cover.jpg" alt="CSS Display & Position Cover" width="400px" height="400px">
 
 ## Learn CSS Display & Position: Interactive Playground
 
